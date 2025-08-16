@@ -29,11 +29,14 @@ This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into G
 
 ## 📦 Installation
 
+### If you are **not** using Docker
+
 1. **Clone or download this repository**:
 
     ```bash
     git clone https://github.com/youruser/guardiankeyauth-glpi.git
     ```
+
 2. **Compress the plugin folder** (`guardiankeyauth/`) as a ZIP file.
 
 3. **In GLPI**:
@@ -41,6 +44,37 @@ This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into G
     - Go to **Setup > Plugins**
     - Click **Install a new plugin**
     - Upload the ZIP file
+    - Click **Install**, then **Enable**
+
+---
+
+### If you are using **GLPI with Docker**
+
+The GLPI Docker environment does **not** support uploading plugins via ZIP file.  
+Instead, you must copy the plugin files directly into the container or the appropriate volume:
+
+1. **Clone this repository** on your host machine:
+
+    ```bash
+    git clone https://github.com/youruser/guardiankeyauth-glpi.git
+    ```
+
+2. **Copy the plugin folder** (`guardiankeyauth/`) into the GLPI plugins directory.  
+   This is usually at `/var/www/html/plugins/` inside the container.
+
+    - If using Docker volumes, copy to the mapped `plugins` directory on your host.
+    - If you have shell access to the container, you can use:
+
+        ```bash
+        docker cp guardiankeyauth your_glpi_container:/var/www/html/plugins/
+        ```
+
+3. **Restart the GLPI container** (if needed).
+
+4. **In GLPI**:
+
+    - Go to **Setup > Plugins**
+    - Find **GuardianKey AuthSecurity** in the list
     - Click **Install**, then **Enable**
 
 ---
@@ -102,7 +136,7 @@ During each login attempt:
 
 ## 🙋 Support
 
-This plugin was developed by [Your Name / Company].  
+This plugin was developed by GuardianKey Cybersecurity.  
 For support or questions, contact:
 
 - Email: contact@guardiankey.io
