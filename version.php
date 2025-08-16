@@ -1,0 +1,2 @@
+<?php
+define("PLUGIN_GUARDIANKEYAUTH_VERSION", "1.0.0");
