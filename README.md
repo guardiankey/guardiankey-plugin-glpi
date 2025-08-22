@@ -18,7 +18,7 @@ This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into G
 ## ✅ Requirements
 
 - GLPI version **9.4+** (tested up to 10.x)
-- An account on [GuardianKey Platform](https://guardiankey.io)
+- An account on [GuardianKey Platform](https://gdn.guardiankey.io)
 - Required configuration parameters:
   - `orgid`
   - `authgroupid`
@@ -60,7 +60,7 @@ Instead, you must copy the plugin files directly into the container or the appro
     ```
 
 2. **Copy the plugin folder** (`guardiankeyauth/`) into the GLPI plugins directory.  
-   This is usually at `/var/www/html/plugins/` inside the container.
+   This is usually at `/var/www/html/glpi/plugins/` inside the container.
 
     - If using Docker volumes, copy to the mapped `plugins` directory on your host.
     - If you have shell access to the container, you can use:
@@ -141,3 +141,4 @@ For support or questions, contact:
 
 - Email: contact@guardiankey.io
 - Website: [https://guardiankey.io](https://guardiankey.io)
+- Documentation: https://guardiankey.io/docs

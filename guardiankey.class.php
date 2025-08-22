@@ -38,6 +38,7 @@ class guardiankey
         $this->check_extensions();
         if($GKconfig!=null)
             $this->GKconfig = $GKconfig;
+
     }
 
     function _json_encode($obj)
@@ -108,6 +109,11 @@ class guardiankey
             $json->event_type=$eventType; // "Authentication" "Bad access"  ou "Registration"
             $json->userEmail=$useremail;
             $tmpmessage = $this->_json_encode($json);
+                    file_put_contents(
+    GLPI_ROOT . "/files/_log/guardiankey.log",
+    "[" . date('Y-m-d H:i:s') . "] [GK] create_message() - json: " . $tmpmessage . "\n",
+    FILE_APPEND
+);
             return $tmpmessage;
         }
     }
@@ -120,30 +126,6 @@ class guardiankey
         $socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
         socket_sendto($socket, $payload, strlen($payload), 0, "collector.guardiankey.net", "8888");
     }
-   
-   function sendevent($username, $useremail="", $attempt = "0", $eventType = 'Authentication')
-    {
-       $GKconfig = $this->GKconfig;
-        $guardianKeyWS = 'https://api.guardiankey.io/sendevent';
-        $message = $this->create_messagev1($username, $useremail, $attempt, $eventType);
-        $tmpdata = new stdClass();
-        $tmpdata->id = $GKconfig['authgroupid'];
-        $tmpdata->message = $message;
-        $data = $this->_json_encode($tmpdata);
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-        curl_setopt($ch, CURLOPT_URL, $guardianKeyWS);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($data)
-        ));
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $return = curl_exec($ch);
-        curl_close($ch);
-    }
 
     function checktransaction($username, $useremail="", $attempt = "0")
     {
@@ -152,6 +134,11 @@ class guardiankey
 
     function checkaccess($username, $useremail="", $attempt = "0", $eventType = 'Authentication')
     {
+file_put_contents(
+    GLPI_ROOT . "/files/_log/guardiankey.log",
+    "[" . date('Y-m-d H:i:s') . "] [GK] typeof GKconfig: " . gettype($this->GKconfig) . " - value: " . print_r($this->GKconfig, true) . "\n",
+    FILE_APPEND
+);
         try {
         $GKconfig = $this->GKconfig;
         $guardianKeyWS = 'https://api.guardiankey.io/v2/checkaccess';
