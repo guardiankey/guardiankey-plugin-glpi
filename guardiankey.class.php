@@ -109,11 +109,11 @@ class guardiankey
             $json->event_type=$eventType; // "Authentication" "Bad access"  ou "Registration"
             $json->userEmail=$useremail;
             $tmpmessage = $this->_json_encode($json);
-                    file_put_contents(
-    GLPI_ROOT . "/files/_log/guardiankey.log",
-    "[" . date('Y-m-d H:i:s') . "] [GK] create_message() - json: " . $tmpmessage . "\n",
-    FILE_APPEND
-);
+// file_put_contents(
+//     GLPI_ROOT . "/files/_log/guardiankey.log",
+//     "[" . date('Y-m-d H:i:s') . "] [GK] create_message() - json: " . $tmpmessage . "\n",
+//     FILE_APPEND
+// );
             return $tmpmessage;
         }
     }
@@ -134,11 +134,11 @@ class guardiankey
 
     function checkaccess($username, $useremail="", $attempt = "0", $eventType = 'Authentication')
     {
-file_put_contents(
-    GLPI_ROOT . "/files/_log/guardiankey.log",
-    "[" . date('Y-m-d H:i:s') . "] [GK] typeof GKconfig: " . gettype($this->GKconfig) . " - value: " . print_r($this->GKconfig, true) . "\n",
-    FILE_APPEND
-);
+//         file_put_contents(
+//     GLPI_ROOT . "/files/_log/guardiankey.log",
+//     "[" . date('Y-m-d H:i:s') . "] [GK] typeof GKconfig: " . gettype($this->GKconfig) . " - value: " . print_r($this->GKconfig, true) . "\n",
+//     FILE_APPEND
+// );
         try {
         $GKconfig = $this->GKconfig;
         $guardianKeyWS = 'https://api.guardiankey.io/v2/checkaccess';

@@ -1,6 +1,6 @@
 # GuardianKey AuthSecurity for GLPI
 
-This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into GLPI, protecting the login process by analyzing risk using AI, geolocation, behavioral biometrics, and other signals.
+This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into GLPI, protecting the login process by analyzing risk using AI, geolocation, behavioral authentication, and threat intelligence.
 
 ---
 
@@ -34,10 +34,10 @@ This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into G
 1. **Clone or download this repository**:
 
     ```bash
-    git clone https://github.com/youruser/guardiankeyauth-glpi.git
+    git clone https://github.com/guardiankey/guardiankey-plugin-glpi.git
     ```
 
-2. **Compress the plugin folder** (`guardiankeyauth/`) as a ZIP file.
+2. **Rename and Compress the plugin folder** Rename de folder `guardiankey-plugin-glpi/` to `guardiankeyauth` and compress it as a ZIP file.
 
 3. **In GLPI**:
 
@@ -56,17 +56,17 @@ Instead, you must copy the plugin files directly into the container or the appro
 1. **Clone this repository** on your host machine:
 
     ```bash
-    git clone https://github.com/youruser/guardiankeyauth-glpi.git
+    git clone https://github.com/guardiankey/guardiankey-plugin-glpi.git
     ```
 
-2. **Copy the plugin folder** (`guardiankeyauth/`) into the GLPI plugins directory.  
-   This is usually at `/var/www/html/glpi/plugins/` inside the container.
+2. **Rename and Copy the plugin folder** Rename de folder `guardiankey-plugin-glpi/` to `guardiankeyauth` and 
+   copy it into the GLPI plugins directory. This is usually at `/var/www/html/glpi/plugins/` inside the container.
 
     - If using Docker volumes, copy to the mapped `plugins` directory on your host.
     - If you have shell access to the container, you can use:
 
         ```bash
-        docker cp guardiankeyauth your_glpi_container:/var/www/html/plugins/
+        docker cp guardiankey-plugin-glpi your_glpi_container:/var/www/html/plugins/guardiankeyauth
         ```
 
 3. **Restart the GLPI container** (if needed).
@@ -111,18 +111,6 @@ During each login attempt:
   - Allows login
   - Allows with warning
   - Blocks login
-
----
-
-## 📤 Example of API response
-
-```json
-{
-  "response": "BLOCK",
-  "risk": 87,
-  "details": "Login from unknown source with unusual behavior pattern."
-}
-```
 
 ---
 

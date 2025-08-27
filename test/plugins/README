@@ -1,0 +1,8 @@
+You should create a directory in this folder for your plugin tests.
+
+This directory must be named by guardiankeyauth and contains the repository files for your tests.
+
+Execute the docker compose to initiate containers, install GLPI and test the plugin.
+
+docker compose up -d
+
