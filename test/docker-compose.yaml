@@ -19,6 +19,7 @@ services:
       - "8080:80"
     environment:
       TIMEZONE: America/Sao_Paulo
+      VERSION_GLPI: 10.0.20
     depends_on:
       - db
     volumes:

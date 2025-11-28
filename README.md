@@ -29,6 +29,10 @@ This plugin integrates [GuardianKey AuthSecurity](https://guardiankey.io) into G
 
 ## 📦 Installation
 
+### Requirements
+
+- Tested with GLPI version 10.0.20
+
 ### If you are **not** using Docker
 
 1. **Clone or download this repository**:
