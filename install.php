@@ -38,7 +38,24 @@ function plugin_guardiankeyauth_install() {
       } elseif (isset($_POST["login_name"]) ) {
          $username = $_POST["login_name"];
       } else {
-         $username = "Could not find login name. Check your GLPI version";
+
+         $fielda_key = null;
+         try{
+            foreach (array_keys($_POST) as $key) {
+               if (strpos($key, "fielda") === 0) {
+                  $fielda_key = $key;
+                  break;
+               }
+            }
+         } catch (Exception $e) {
+            $fielda_key = null;
+         }
+
+         if ($fielda_key !== null) {
+            $username = $_POST[$fielda_key];
+         } else {
+            $username = "Could not find login name. Check your GLPI version";
+         }
       }
       require_once("../plugins/guardiankeyauth/guardiankeyauth.class.php");
       $GK = new PluginGuardianKeyAuth();
@@ -46,7 +63,13 @@ function plugin_guardiankeyauth_install() {
 ';
 
       $ok_block_begin = '// GK_BEGIN_BLOCK
-         $gk_return = $GK->checkAccess($username,"0");
+
+         try {
+            $gk_return = $GK->checkAccess($username,"0");
+         } catch (Exception $e) {
+            $gk_return = "ERROR";
+         }
+
          if ($gk_return == "BLOCK") {
 ';
       $ok_block_end = '
@@ -57,7 +80,11 @@ function plugin_guardiankeyauth_install() {
 
       $nok_block = '
 // GK_BEGIN_BLOCK
+      try{
          $GK->checkAccess($username,"1");
+      } catch (Exception $e) {
+         // Handle exception if needed
+      }
 // GK_END_BLOCK';
 
       $content = preg_replace(
