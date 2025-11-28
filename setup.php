@@ -11,12 +11,12 @@ function plugin_init_guardiankeyauth() {
 function plugin_version_guardiankeyauth() {
     return [
         'name'           => 'GuardianKey AuthSecurity',
-        'version'        => '1.0.0',
+        'version'        => '1.0.1',
         'author'         => 'GuardianKey Cybersecurity',
         'license'        => 'MIT',
         'homepage'       => 'https://guardiankey.io',
         'minGlpiVersion' => '9.4',
-        'maxGlpiVersion' => '10.0.19'
+        'maxGlpiVersion' => '10.0.20'
     ];
 }
 
