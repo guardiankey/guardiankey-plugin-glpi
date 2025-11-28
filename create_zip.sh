@@ -5,7 +5,7 @@ rm -rf /tmp/guardiankeyauth
 mkdir /tmp/guardiankeyauth
 cp -r * /tmp/guardiankeyauth
 cd /tmp/guardiankeyauth
-rm -rf .git test README.md install.sh guardiankeyauth.zip
+rm -rf .git test install.sh guardiankeyauth.zip
 cd /tmp
 zip -r guardiankeyauth.zip guardiankeyauth
 cd $REPO_PATH
