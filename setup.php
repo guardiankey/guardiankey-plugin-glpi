@@ -11,7 +11,7 @@ function plugin_init_guardiankeyauth() {
 function plugin_version_guardiankeyauth() {
     return [
         'name'           => 'GuardianKey AuthSecurity',
-        'version'        => '1.0.1',
+        'version'        => '1.0.2',
         'author'         => 'GuardianKey Cybersecurity',
         'license'        => 'MIT',
         'homepage'       => 'https://guardiankey.io',
